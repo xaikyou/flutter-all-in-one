@@ -10,7 +10,7 @@ Future<void> main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<AppConfigCubit>(
-          create: (BuildContext context) => AppConfigCubit(),
+          create: (BuildContext context) => AppConfigCubit()..getAppInfo(),
         ),
       ],
       child: const MainApp(),
@@ -31,8 +31,8 @@ class MainApp extends StatelessWidget {
           routerConfig: AppRouter.router,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          locale: state.locale,
-          theme: state.themeData,
+          locale: state.data.locale,
+          theme: state.data.themeData,
         );
       },
     );

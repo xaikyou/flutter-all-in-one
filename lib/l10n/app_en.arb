@@ -1,5 +1,14 @@
 {
     "helloWorld": "Hello World!",
+    "home": "Home",
+    "history": "History",
+    "scan_qr": "Scan QR",
+    "favorite": "Favorite",
+    "profile": "Profile",
     "language": "Language",
-    "dark_mode": "Dark mode"
+    "dark_mode": "Dark mode",
+    "log_out": "Log out",
+    "close": "Close",
+    "confirm": "Confirm",
+    "log_out_description": "Are you sure you want to log out?"
 }

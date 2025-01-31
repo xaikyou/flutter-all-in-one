@@ -5,6 +5,7 @@ import 'package:flutter_all_in_one/presentation/favorite/favorite_screen.dart';
 import 'package:flutter_all_in_one/presentation/history/history_screen.dart';
 import 'package:flutter_all_in_one/presentation/home/home_screen.dart';
 import 'package:flutter_all_in_one/presentation/profile/profile_screen.dart';
+import 'package:flutter_all_in_one/presentation/qr_scanner/qr_scanner_screen.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'nav_cubit.freezed.dart';
@@ -14,6 +15,7 @@ class NavCubit extends Cubit<NavState> {
   static final _screens = [
     HomeScreen(),
     HistoryScreen(),
+    QrScannerScreen(),
     FavoriteScreen(),
     ProfileScreen(),
   ];

@@ -1,5 +1,14 @@
 {
     "helloWorld": "Xin chào thế giới!",
+    "home": "Trang chủ",
+    "history": "Lịch sử",
+    "scan_qr": "Quét QR",
+    "favorite": "Yêu thích",
+    "profile": "Tài khoản",
     "language": "Ngôn ngữ",
-    "dark_mode": "Chế độ nền tối"
+    "dark_mode": "Chế độ nền tối",
+    "log_out": "Đăng xuất",
+    "close": "Đóng",
+    "confirm": "Xác nhận",
+    "log_out_description": "Bạn có chắc muốn đăng xuất chứ?"
 }

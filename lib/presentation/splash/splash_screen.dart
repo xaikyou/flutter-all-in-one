@@ -16,9 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     /// Loading something here ...
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => context.go(AppRouter.nav),
-    );
+    Future.delayed(Duration(seconds: 1)).then((_) {
+      if (mounted) {
+        context.go(AppRouter.nav);
+      }
+    });
   }
 
   @override

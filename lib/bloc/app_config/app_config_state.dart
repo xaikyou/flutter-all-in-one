@@ -1,26 +1,23 @@
 part of 'app_config_cubit.dart';
 
-abstract class AppConfigState {
-  final Locale? locale;
-  final ThemeData? themeData;
-
-  const AppConfigState({
-    this.locale,
-    this.themeData,
-  });
+@freezed
+class AppConfigStateData with _$AppConfigStateData {
+  const factory AppConfigStateData({
+    final Locale? locale,
+    final ThemeData? themeData,
+    final String? version,
+  }) = _AppConfigStateData;
 }
 
-class AppConfigInitialState extends AppConfigState {
-  AppConfigInitialState({
-    required super.locale,
-    required super.themeData,
-  });
-}
-
-class AppConfigUpdateLocaleState extends AppConfigState {
-  AppConfigUpdateLocaleState({required super.locale});
-}
-
-class AppConfigUpdateThemeState extends AppConfigState {
-  AppConfigUpdateThemeState({required super.themeData});
+@freezed
+class AppConfigState with _$AppConfigState {
+  const factory AppConfigState.initialState(
+    AppConfigStateData data,
+  ) = _InitialState;
+  const factory AppConfigState.updateLocaleState(
+    AppConfigStateData data,
+  ) = UpdateLocaleState;
+  const factory AppConfigState.updateThemeDataState(
+    AppConfigStateData data,
+  ) = UpdateThemeDataState;
 }

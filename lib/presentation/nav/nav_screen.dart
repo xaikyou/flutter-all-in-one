@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/extension/context_extension.dart';
 import 'package:flutter_all_in_one/presentation/nav/cubit/nav_cubit.dart';
+import 'package:flutter_all_in_one/router/app_router.dart';
 import 'package:flutter_all_in_one/style/app_color.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class NavScreen extends StatelessWidget {
@@ -35,7 +38,7 @@ class NavBody extends StatelessWidget {
                   MingCute.home_4_line,
                   color: AppColor.selectedNavIcon,
                 ),
-                label: 'Home',
+                label: context.loc.home,
               ),
               NavigationDestination(
                 icon: Icon(MingCute.history_anticlockwise_line),
@@ -43,7 +46,40 @@ class NavBody extends StatelessWidget {
                   MingCute.history_anticlockwise_line,
                   color: AppColor.selectedNavIcon,
                 ),
-                label: 'History',
+                label: context.loc.history,
+              ),
+              InkWell(
+                splashFactory: NoSplash.splashFactory,
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                onTap: () => context.push(AppRouter.qrScanner),
+                child: Ink(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 4,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: AppColor.yellow,
+                        child: Icon(
+                          MingCute.scan_line,
+                          color: AppColor.white,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        decoration: ShapeDecoration(
+                          shape: StadiumBorder(),
+                          color: AppColor.yellow,
+                        ),
+                        child: Text(
+                          context.loc.scan_qr,
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               NavigationDestination(
                 icon: Icon(MingCute.star_line),
@@ -51,7 +87,7 @@ class NavBody extends StatelessWidget {
                   MingCute.star_line,
                   color: AppColor.selectedNavIcon,
                 ),
-                label: 'Favorite',
+                label: context.loc.favorite,
               ),
               NavigationDestination(
                 icon: Icon(MingCute.user_2_line),
@@ -59,7 +95,7 @@ class NavBody extends StatelessWidget {
                   MingCute.user_2_line,
                   color: AppColor.selectedNavIcon,
                 ),
-                label: 'Profile',
+                label: context.loc.profile,
               ),
             ],
           );
