@@ -1,14 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/service/app_settings/app_settings_service_impl.dart';
+import 'package:flutter_all_in_one/service/remote_config/remote_config_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../service/injection/injection.dart';
 import '../../style/app_theme.dart';
 
 part 'app_config_cubit.freezed.dart';
 part 'app_config_state.dart';
 
 class AppConfigCubit extends Cubit<AppConfigState> {
+  final AppSettingsService _appSettings;
+
   static Locale defaultLocale = Locale('en');
   static ThemeData themeData = AppTheme.lightTheme;
 
@@ -18,10 +23,18 @@ class AppConfigCubit extends Cubit<AppConfigState> {
   };
 
   AppConfigCubit()
-      : super(_InitialState(AppConfigStateData(
+      : _appSettings = getIt<AppSettingsService>(),
+        super(_InitialState(AppConfigStateData(
           locale: defaultLocale,
           themeData: themeData,
         )));
+
+  void init() async {
+    getAppInfo();
+
+    bool isAppLaunched = await _appSettings.isAppFirstLaunch();
+    emit(_InitialState(state.data.copyWith(isFirstLaunch: isAppLaunched)));
+  }
 
   void getAppInfo() {
     PackageInfo.fromPlatform().then((PackageInfo packageInfo) {

@@ -35,6 +35,11 @@ class AppTheme {
       trackColor: WidgetStatePropertyAll(AppColor.white),
       trackOutlineColor: WidgetStatePropertyAll(AppColor.yellow),
     ),
+
+    /// Progress Indicator
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: AppColor.yellow,
+    ),
   );
 
   static final _darkTheme = ThemeData(
@@ -67,6 +72,11 @@ class AppTheme {
       thumbColor: WidgetStatePropertyAll(AppColor.yellow),
       trackColor: WidgetStatePropertyAll(AppColor.black),
       trackOutlineColor: WidgetStatePropertyAll(AppColor.yellow),
+    ),
+
+    /// Progress Indicator
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: AppColor.yellow,
     ),
   );
 

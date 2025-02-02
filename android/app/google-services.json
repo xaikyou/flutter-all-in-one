@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "729644045218",
+    "project_id": "flutter-all-in-one-39dc9",
+    "storage_bucket": "flutter-all-in-one-39dc9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729644045218:android:fb6890f7f990fdd1dd98fb",
+        "android_client_info": {
+          "package_name": "com.example.flutter_all_in_one"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9hvYOhgLtCNc5NBk9YlgwfziyJHiMjQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

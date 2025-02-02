@@ -6,6 +6,7 @@ class AppConfigStateData with _$AppConfigStateData {
     final Locale? locale,
     final ThemeData? themeData,
     final String? version,
+    @Default(true) bool isFirstLaunch,
   }) = _AppConfigStateData;
 }
 
