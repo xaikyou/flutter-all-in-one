@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/app_config/app_config_cubit.dart';
-import 'bloc/bloc/connectivity_bloc.dart';
+import 'bloc/connectivity/connectivity_bloc.dart';
 import 'firebase_options.dart';
 import 'l10n/generated/app_localizations.dart';
 import 'router/app_router.dart';

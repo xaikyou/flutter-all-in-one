@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/service/app_settings/app_settings_service_impl.dart';
-import 'package:flutter_all_in_one/service/remote_config/remote_config_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

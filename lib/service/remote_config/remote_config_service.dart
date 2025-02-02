@@ -34,18 +34,20 @@ class RemoteConfigService {
 
   Future<void> init() async {
     await _remoteConfig.setConfigSettings(RemoteConfigSettings(
-      fetchTimeout: const Duration(minutes: 1),
-      minimumFetchInterval: const Duration(minutes: 15),
+      fetchTimeout: const Duration(seconds: 10),
+      minimumFetchInterval: const Duration(minutes: 30),
     ));
+
+    _remoteConfig.onConfigUpdated.listen((event) {
+      _onRemoteConfigValueUpdate.call();
+    });
 
     if (await _connectivityService.isConnected) {
       await _remoteConfig.fetchAndActivate();
-      _onRemoteConfigValueUpdate();
     }
     _connectivityService.onConnectivityChange.listen((event) async {
       if (event) {
-        await _remoteConfig.fetchAndActivate();
-        _onRemoteConfigValueUpdate();
+        await _remoteConfig.fetch();
       }
     });
   }
