@@ -53,54 +53,65 @@ class CustomDialogWidget {
           ),
           actionsPadding: EdgeInsets.zero,
           actions: [
-            const Divider(color: AppColor.grey, height: 1),
             IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(),
-                        padding: EdgeInsets.symmetric(vertical: 8),
-                        backgroundColor: context.isDarkModeOn
-                            ? AppColor.darkScaffold
-                            : AppColor.ligthScaffold,
-                        foregroundColor: context.isDarkModeOn
-                            ? AppColor.white
-                            : AppColor.black,
-                      ),
-                      onPressed: () => context.pop(),
-                      child: Text(
-                        context.loc.close,
-                        style: TextStyle(fontSize: 14),
-                      ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(
+                      color: AppColor.grey,
+                      width: 1,
                     ),
                   ),
-                  VerticalDivider(color: AppColor.grey, width: 1),
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(),
-                        padding: EdgeInsets.symmetric(vertical: 8),
-                        backgroundColor: context.isDarkModeOn
-                            ? AppColor.darkScaffold
-                            : AppColor.ligthScaffold,
-                        foregroundColor: context.isDarkModeOn
-                            ? AppColor.white
-                            : AppColor.black,
-                      ),
-                      onPressed: () {
-                        context.pop();
-                        confirmationFun?.call();
-                      },
-                      child: Text(
-                        confirmationText ?? context.loc.confirm,
-                        style: TextStyle(fontSize: 14),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(),
+                          padding: EdgeInsets.symmetric(vertical: 8),
+                          backgroundColor: context.isDarkModeOn
+                              ? AppColor.darkScaffold
+                              : AppColor.ligthScaffold,
+                          foregroundColor: context.isDarkModeOn
+                              ? AppColor.white
+                              : AppColor.black,
+                        ),
+                        onPressed: () => context.pop(),
+                        child: Text(
+                          context.loc.close,
+                          style: TextStyle(fontSize: 14),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    VerticalDivider(color: AppColor.grey, width: 1),
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(),
+                          padding: EdgeInsets.symmetric(vertical: 8),
+                          backgroundColor: context.isDarkModeOn
+                              ? AppColor.darkScaffold
+                              : AppColor.ligthScaffold,
+                          foregroundColor: context.isDarkModeOn
+                              ? AppColor.white
+                              : AppColor.black,
+                        ),
+                        onPressed: () {
+                          context.pop();
+                          confirmationFun?.call();
+                        },
+                        child: Text(
+                          confirmationText ?? context.loc.confirm,
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

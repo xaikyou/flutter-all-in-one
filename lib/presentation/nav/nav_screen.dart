@@ -74,7 +74,10 @@ class NavBody extends StatelessWidget {
                         ),
                         child: Text(
                           context.loc.scan_qr,
-                          style: TextStyle(fontSize: 12),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: AppColor.black,
+                          ),
                         ),
                       ),
                     ],

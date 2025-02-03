@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_all_in_one/service/injection/injection.dart';
@@ -35,7 +36,7 @@ class RemoteConfigService {
   Future<void> init() async {
     await _remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: const Duration(seconds: 10),
-      minimumFetchInterval: const Duration(minutes: 30),
+      minimumFetchInterval: const Duration(minutes: 1),
     ));
 
     _remoteConfig.onConfigUpdated.listen((event) {
@@ -47,9 +48,24 @@ class RemoteConfigService {
     }
     _connectivityService.onConnectivityChange.listen((event) async {
       if (event) {
-        await _remoteConfig.fetch();
+        await updateValue();
       }
     });
+  }
+
+  Future<void> updateValue() async {
+    try {
+      bool updated = await _remoteConfig.activate().then((_) async {
+        return await _remoteConfig.fetchAndActivate();
+      });
+      if (updated) {
+        _onRemoteConfigValueUpdate();
+      } else {
+        // developer.log('No update from Firebase Remote Config');
+      }
+    } catch (e) {
+      developer.log('Error fetching remote config: $e');
+    }
   }
 
   void _onRemoteConfigValueUpdate() {
