@@ -39,6 +39,7 @@ class NavBody extends StatelessWidget {
                   color: AppColor.selectedNavIcon,
                 ),
                 label: context.loc.home,
+                tooltip: '',
               ),
               NavigationDestination(
                 icon: Icon(MingCute.history_anticlockwise_line),
@@ -47,6 +48,7 @@ class NavBody extends StatelessWidget {
                   color: AppColor.selectedNavIcon,
                 ),
                 label: context.loc.history,
+                tooltip: '',
               ),
               InkWell(
                 splashFactory: NoSplash.splashFactory,
@@ -91,6 +93,7 @@ class NavBody extends StatelessWidget {
                   color: AppColor.selectedNavIcon,
                 ),
                 label: context.loc.favorite,
+                tooltip: '',
               ),
               NavigationDestination(
                 icon: Icon(MingCute.user_2_line),
@@ -99,6 +102,7 @@ class NavBody extends StatelessWidget {
                   color: AppColor.selectedNavIcon,
                 ),
                 label: context.loc.profile,
+                tooltip: '',
               ),
             ],
           );

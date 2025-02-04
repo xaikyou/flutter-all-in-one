@@ -48,7 +48,7 @@ class RemoteConfigService {
     }
     _connectivityService.onConnectivityChange.listen((event) async {
       if (event) {
-        await updateValue();
+        await _remoteConfig.fetch();
       }
     });
   }
@@ -60,8 +60,6 @@ class RemoteConfigService {
       });
       if (updated) {
         _onRemoteConfigValueUpdate();
-      } else {
-        // developer.log('No update from Firebase Remote Config');
       }
     } catch (e) {
       developer.log('Error fetching remote config: $e');

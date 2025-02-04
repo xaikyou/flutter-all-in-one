@@ -1,4 +1,4 @@
-part of 'remote_config_cubit.dart';
+part of 'remote_config_bloc.dart';
 
 @freezed
 class RemoteConfigStateData with _$RemoteConfigStateData {
@@ -12,7 +12,6 @@ class RemoteConfigState with _$RemoteConfigState {
   const factory RemoteConfigState.initial(
     RemoteConfigStateData data,
   ) = _Initial;
-
   const factory RemoteConfigState.fetchDataLoading(
     RemoteConfigStateData data,
   ) = FetchDataLoading;

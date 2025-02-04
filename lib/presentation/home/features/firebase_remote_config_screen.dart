@@ -1,10 +1,13 @@
+// Copyright 2019 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/bloc/remote_config/remote_config_bloc.dart';
 import 'package:flutter_all_in_one/extension/context_extension.dart';
-import 'package:flutter_all_in_one/presentation/home/cubit/remote_config_cubit.dart';
-import 'package:flutter_all_in_one/style/app_color.dart';
+import 'package:flutter_all_in_one/service/remote_config/remote_config_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../service/remote_config/remote_config_service.dart';
+import '../../../style/app_color.dart';
 
 class FirebaseRemoteConfigScreen extends StatelessWidget {
   const FirebaseRemoteConfigScreen({super.key});
@@ -12,8 +15,8 @@ class FirebaseRemoteConfigScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RemoteConfigCubit(),
-      child: FirebaseRemoteConfigBody(),
+      create: (context) => RemoteConfigBloc()..add(WatchUpdatedKeysEvent()),
+      child: const FirebaseRemoteConfigBody(),
     );
   }
 }
@@ -30,18 +33,17 @@ class _FirebaseRemoteConfigBodyState extends State<FirebaseRemoteConfigBody> {
   @override
   void initState() {
     super.initState();
-    context.read<RemoteConfigCubit>().getValue(RemoteConfigKey.text);
+    context.read<RemoteConfigBloc>().add(FetchDataEvent(RemoteConfigKey.text));
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RemoteConfigCubit, RemoteConfigState>(
+    return BlocListener<RemoteConfigBloc, RemoteConfigState>(
       listener: (context, state) {
         if (state is FetchDataLoading) {
-          ///
-        }
-        if (state is FetchDataSuccess) {
-          ///
+          context
+              .read<RemoteConfigBloc>()
+              .add(FetchDataEvent(RemoteConfigKey.text));
         }
       },
       child: Scaffold(
@@ -61,8 +63,8 @@ class _FirebaseRemoteConfigBodyState extends State<FirebaseRemoteConfigBody> {
               child: IconButton(
                 onPressed: () {
                   context
-                      .read<RemoteConfigCubit>()
-                      .getValue(RemoteConfigKey.text);
+                      .read<RemoteConfigBloc>()
+                      .add(FetchDataEvent(RemoteConfigKey.text));
                 },
                 icon: Icon(Icons.refresh_rounded),
               ),
@@ -77,7 +79,7 @@ class _FirebaseRemoteConfigBodyState extends State<FirebaseRemoteConfigBody> {
             borderRadius: BorderRadius.circular(8),
             color: context.isDarkModeOn ? AppColor.black : AppColor.white,
           ),
-          child: BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+          child: BlocBuilder<RemoteConfigBloc, RemoteConfigState>(
             builder: (context, state) {
               return Text(state.data.value ?? '');
             },
