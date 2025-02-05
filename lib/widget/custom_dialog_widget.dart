@@ -24,9 +24,7 @@ class CustomDialogWidget {
         return AlertDialog(
           icon: icon,
           clipBehavior: Clip.antiAlias,
-          backgroundColor: context.isDarkModeOn
-              ? AppColor.darkScaffold
-              : AppColor.ligthScaffold,
+          backgroundColor: AppColor.getBackgroundColor(context),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           content: Column(
@@ -72,12 +70,9 @@ class CustomDialogWidget {
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           shape: RoundedRectangleBorder(),
                           padding: EdgeInsets.symmetric(vertical: 8),
-                          backgroundColor: context.isDarkModeOn
-                              ? AppColor.darkScaffold
-                              : AppColor.ligthScaffold,
-                          foregroundColor: context.isDarkModeOn
-                              ? AppColor.white
-                              : AppColor.black,
+                          backgroundColor: AppColor.getBackgroundColor(context),
+                          foregroundColor:
+                              AppColor.getBlackWhite(context, reverse: true),
                         ),
                         onPressed: () => context.pop(),
                         child: Text(
@@ -93,12 +88,9 @@ class CustomDialogWidget {
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           shape: RoundedRectangleBorder(),
                           padding: EdgeInsets.symmetric(vertical: 8),
-                          backgroundColor: context.isDarkModeOn
-                              ? AppColor.darkScaffold
-                              : AppColor.ligthScaffold,
-                          foregroundColor: context.isDarkModeOn
-                              ? AppColor.white
-                              : AppColor.black,
+                          backgroundColor: AppColor.getBackgroundColor(context),
+                          foregroundColor:
+                              AppColor.getBlackWhite(context, reverse: true),
                         ),
                         onPressed: () {
                           context.pop();

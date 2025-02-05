@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_all_in_one/extension/context_extension.dart';
 import 'package:flutter_all_in_one/router/app_router.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,7 +16,7 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: context.isDarkModeOn ? AppColor.black : AppColor.white,
+            color: AppColor.getBlackWhite(context),
           ),
           child: ListView(
             shrinkWrap: true,
@@ -28,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                 leading: Icon(
                   Icons.wifi_rounded,
                   size: 30,
-                  color: context.isDarkModeOn ? AppColor.white : AppColor.black,
+                  color: AppColor.getBlackWhite(context, reverse: true),
                 ),
                 title: Text(
                   'Connectivity Plus',
@@ -45,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                 leading: Icon(
                   Icons.settings_remote_rounded,
                   size: 30,
-                  color: context.isDarkModeOn ? AppColor.white : AppColor.black,
+                  color: AppColor.getBlackWhite(context, reverse: true),
                 ),
                 title: Text(
                   'Firebase Remote Config',

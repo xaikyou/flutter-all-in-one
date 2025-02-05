@@ -34,8 +34,7 @@ class ProfileScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     // border: Border.all(color: AppColor.yellow),
                     borderRadius: BorderRadius.circular(8),
-                    color:
-                        context.isDarkModeOn ? AppColor.black : AppColor.white,
+                    color: AppColor.getBlackWhite(context),
                   ),
                   child: Column(
                     children: [
@@ -63,9 +62,7 @@ class ProfileScreen extends StatelessWidget {
                     backgroundColor: AppColor.yellow,
                     child: CircleAvatar(
                       radius: 40,
-                      backgroundColor: context.isDarkModeOn
-                          ? AppColor.black
-                          : AppColor.white,
+                      backgroundColor: AppColor.getBlackWhite(context),
                       backgroundImage: Image.asset(
                         'asset/shiba.png',
                         isAntiAlias: true,
@@ -82,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: context.isDarkModeOn ? AppColor.black : AppColor.white,
+                color: AppColor.getBlackWhite(context),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -131,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: context.isDarkModeOn ? AppColor.black : AppColor.white,
+                color: AppColor.getBlackWhite(context),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,

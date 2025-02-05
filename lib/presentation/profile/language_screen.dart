@@ -24,7 +24,7 @@ class LanguageScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: context.isDarkModeOn ? AppColor.black : AppColor.white,
+        backgroundColor: AppColor.getBlackWhite(context),
         title: Text(
           context.loc.language,
           style: TextStyle(
@@ -38,7 +38,7 @@ class LanguageScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: context.isDarkModeOn ? AppColor.black : AppColor.white,
+          color: AppColor.getBlackWhite(context),
         ),
         child: ListView.separated(
           shrinkWrap: true,

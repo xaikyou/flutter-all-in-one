@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/extension/context_extension.dart';
 
 class AppColor {
   AppColor._();
@@ -11,4 +12,20 @@ class AppColor {
   static const grey = Color.fromARGB(255, 200, 200, 200);
 
   static const selectedNavIcon = yellow;
+
+  static Color getBlackWhite(BuildContext context, {bool? reverse}) {
+    return reverse == true
+        ? context.isDarkModeOn
+            ? AppColor.white
+            : AppColor.black
+        : context.isDarkModeOn
+            ? AppColor.black
+            : AppColor.white;
+  }
+
+  static Color getBackgroundColor(BuildContext context, {bool? reverse}) {
+    return context.isDarkModeOn
+        ? AppColor.darkScaffold
+        : AppColor.ligthScaffold;
+  }
 }

@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/bloc/remote_config/remote_config_bloc.dart';
-import 'package:flutter_all_in_one/extension/context_extension.dart';
 import 'package:flutter_all_in_one/service/remote_config/remote_config_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,8 +47,7 @@ class _FirebaseRemoteConfigBodyState extends State<FirebaseRemoteConfigBody> {
       },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor:
-              context.isDarkModeOn ? AppColor.black : AppColor.white,
+          backgroundColor: AppColor.getBlackWhite(context),
           title: Text(
             'Firebase Remote Config',
             style: TextStyle(
@@ -77,7 +75,7 @@ class _FirebaseRemoteConfigBodyState extends State<FirebaseRemoteConfigBody> {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: context.isDarkModeOn ? AppColor.black : AppColor.white,
+            color: AppColor.getBlackWhite(context),
           ),
           child: BlocBuilder<RemoteConfigBloc, RemoteConfigState>(
             builder: (context, state) {
