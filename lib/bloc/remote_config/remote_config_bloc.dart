@@ -33,7 +33,9 @@ class RemoteConfigBloc extends Bloc<RemoteConfigEvent, RemoteConfigState> {
   Future<void> checkUpdatedKeys(Emitter<RemoteConfigState> emit) async {
     await emit.forEach(_remoteConfigService.remoteConfigStream,
         onData: (value) {
-      return FetchDataLoading(state.data);
+      return FetchDataLoading(
+        state.data.copyWith(updatedKeys: _remoteConfigService.updatedKeys),
+      );
     });
   }
 }

@@ -7,7 +7,8 @@ import 'package:flutter_all_in_one/service/injection/injection.dart';
 import '../connectivity/connectivity_service.dart';
 
 enum RemoteConfigKey {
-  text('text', 'Hello World!');
+  text('text', 'Hello World!'),
+  version('version', 'Hello World!');
 
   final String name;
   final dynamic defaultValue;
@@ -26,6 +27,9 @@ class RemoteConfigService {
   final FirebaseRemoteConfig _remoteConfig;
   final ConnectivityService _connectivityService;
 
+  Set<String> _updatedKeys = {};
+  Set<String> get updatedKeys => _updatedKeys;
+
   RemoteConfigService(
       {FirebaseRemoteConfig? remoteConfig,
       ConnectivityService? connectivityService})
@@ -39,7 +43,10 @@ class RemoteConfigService {
       minimumFetchInterval: const Duration(minutes: 1),
     ));
 
-    _remoteConfig.onConfigUpdated.listen((event) {
+    /// Checks which keys have been updated
+    _remoteConfig.onConfigUpdated.listen((event) async {
+      await _remoteConfig.activate();
+      _updatedKeys = event.updatedKeys;
       _onRemoteConfigValueUpdate.call();
     });
 
@@ -48,7 +55,7 @@ class RemoteConfigService {
     }
     _connectivityService.onConnectivityChange.listen((event) async {
       if (event) {
-        await _remoteConfig.fetch();
+        await updateValue();
       }
     });
   }

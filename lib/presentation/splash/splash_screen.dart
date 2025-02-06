@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     /// Loading something here ...
     Future.delayed(Duration(seconds: 1)).then((_) {
       if (mounted) {
-        context.go(AppRouter.nav);
+        context.go(AppRouter.login);
       }
     });
   }

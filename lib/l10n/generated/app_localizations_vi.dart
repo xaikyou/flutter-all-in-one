@@ -34,6 +34,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get log_out => 'Đăng xuất';
 
   @override
+  String get log_in => 'Đăng nhập';
+
+  @override
   String get close => 'Đóng';
 
   @override

@@ -1,3 +1,4 @@
+import 'package:flutter_all_in_one/presentation/authentication/login_screen.dart';
 import 'package:flutter_all_in_one/presentation/home/features/firebase_remote_config_screen.dart';
 import 'package:flutter_all_in_one/presentation/profile/language_screen.dart';
 import 'package:flutter_all_in_one/presentation/qr_scanner/qr_scanner_screen.dart';
@@ -10,6 +11,7 @@ class AppRouter {
   AppRouter._();
 
   static final String splash = '/';
+  static final String login = '/login';
   static final String nav = '/nav';
   static final String language = '/language';
   static final String qrScanner = '/qrScanner';
@@ -22,6 +24,10 @@ class AppRouter {
       GoRoute(
         path: splash,
         builder: (context, state) => SplashScreen(),
+      ),
+      GoRoute(
+        path: login,
+        builder: (context, state) => LoginScreen(),
       ),
       GoRoute(
         path: nav,

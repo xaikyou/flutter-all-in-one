@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/bloc/remote_config/remote_config_bloc.dart';
+import 'package:flutter_all_in_one/service/remote_config/remote_config_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/app_config/app_config_cubit.dart';
@@ -27,6 +29,10 @@ Future<void> main() async {
             ..add(WatchConnectivityEvent())
             ..add(CheckConnectivityEvent()),
         ),
+        BlocProvider<RemoteConfigBloc>(
+          create: (BuildContext context) =>
+              RemoteConfigBloc()..add(WatchUpdatedKeysEvent()),
+        ),
       ],
       child: const MainApp(),
     ),
@@ -38,18 +44,31 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppConfigCubit, AppConfigState>(
-      builder: (context, state) {
-        return MaterialApp.router(
-          title: "Flutter All In One",
-          debugShowCheckedModeBanner: false,
-          routerConfig: AppRouter.router,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          locale: state.data.locale,
-          theme: state.data.themeData,
-        );
-      },
-    );
+    return Builder(builder: (context) {
+      return BlocListener<RemoteConfigBloc, RemoteConfigState>(
+        listener: (context, state) {
+          if (state is FetchDataLoading) {
+            if (state.data.updatedKeys
+                    ?.contains(RemoteConfigKey.version.name) ==
+                true) {
+              context.read<AppConfigCubit>().checkForUpdate();
+            }
+          }
+        },
+        child: BlocBuilder<AppConfigCubit, AppConfigState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+              title: "Flutter All In One",
+              debugShowCheckedModeBanner: false,
+              routerConfig: AppRouter.router,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              locale: state.data.locale,
+              theme: state.data.themeData,
+            );
+          },
+        ),
+      );
+    });
   }
 }

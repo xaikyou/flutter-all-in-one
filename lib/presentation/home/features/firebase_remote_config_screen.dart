@@ -1,6 +1,3 @@
-// Copyright 2019 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/bloc/remote_config/remote_config_bloc.dart';
 import 'package:flutter_all_in_one/service/remote_config/remote_config_service.dart';
@@ -8,27 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../style/app_color.dart';
 
-class FirebaseRemoteConfigScreen extends StatelessWidget {
+class FirebaseRemoteConfigScreen extends StatefulWidget {
   const FirebaseRemoteConfigScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RemoteConfigBloc()..add(WatchUpdatedKeysEvent()),
-      child: const FirebaseRemoteConfigBody(),
-    );
-  }
+  State<FirebaseRemoteConfigScreen> createState() =>
+      _FirebaseRemoteConfigScreenState();
 }
 
-class FirebaseRemoteConfigBody extends StatefulWidget {
-  const FirebaseRemoteConfigBody({super.key});
-
-  @override
-  State<FirebaseRemoteConfigBody> createState() =>
-      _FirebaseRemoteConfigBodyState();
-}
-
-class _FirebaseRemoteConfigBodyState extends State<FirebaseRemoteConfigBody> {
+class _FirebaseRemoteConfigScreenState
+    extends State<FirebaseRemoteConfigScreen> {
   @override
   void initState() {
     super.initState();

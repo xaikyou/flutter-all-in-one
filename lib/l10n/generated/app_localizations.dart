@@ -148,6 +148,12 @@ abstract class AppLocalizations {
   /// **'Log out'**
   String get log_out;
 
+  /// No description provided for @log_in.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get log_in;
+
   /// No description provided for @close.
   ///
   /// In en, this message translates to:

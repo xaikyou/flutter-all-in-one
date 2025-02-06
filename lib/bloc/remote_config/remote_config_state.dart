@@ -4,6 +4,7 @@ part of 'remote_config_bloc.dart';
 class RemoteConfigStateData with _$RemoteConfigStateData {
   const factory RemoteConfigStateData({
     dynamic value,
+    Set<String>? updatedKeys,
   }) = _RemoteConfigStateData;
 }
 

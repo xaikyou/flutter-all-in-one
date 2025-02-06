@@ -34,6 +34,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get log_out => 'Log out';
 
   @override
+  String get log_in => 'Log in';
+
+  @override
   String get close => 'Close';
 
   @override
