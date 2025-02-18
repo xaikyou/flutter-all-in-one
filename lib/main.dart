@@ -49,8 +49,8 @@ class MainApp extends StatelessWidget {
         listener: (context, state) {
           if (state is FetchDataLoading) {
             if (state.data.updatedKeys
-                    ?.contains(RemoteConfigKey.version.name) ==
-                true) {
+                    ?.contains(RemoteConfigKey.version.name) ??
+                false) {
               context.read<AppConfigCubit>().checkForUpdate();
             }
           }

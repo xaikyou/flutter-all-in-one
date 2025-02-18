@@ -1,0 +1,11 @@
+{
+  "dart.flutterSdkPath": ".fvm/versions/3.27.3",
+
+  "editor.codeActionsOnSave": {      
+    "source.fixAll": "explicit"  
+  },
+
+  "arb-editor.suppressedWarnings": [
+    "missing_metadata_for_key"
+  ]
+}

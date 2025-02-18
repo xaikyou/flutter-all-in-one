@@ -1,5 +1,4 @@
 import 'package:flutter_all_in_one/presentation/authentication/login_screen.dart';
-import 'package:flutter_all_in_one/presentation/home/features/firebase_remote_config_screen.dart';
 import 'package:flutter_all_in_one/presentation/profile/language_screen.dart';
 import 'package:flutter_all_in_one/presentation/qr_scanner/qr_scanner_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -15,9 +14,6 @@ class AppRouter {
   static final String nav = '/nav';
   static final String language = '/language';
   static final String qrScanner = '/qrScanner';
-
-  /// HomeScreen's Features
-  static final String firebaseRemoteConfig = '/firebaseRemoteConfig';
 
   static final GoRouter _router = GoRouter(
     routes: [
@@ -40,12 +36,6 @@ class AppRouter {
       GoRoute(
         path: qrScanner,
         builder: (context, state) => QrScannerScreen(),
-      ),
-
-      /// HomeScreen's Features
-      GoRoute(
-        path: firebaseRemoteConfig,
-        builder: (context, state) => FirebaseRemoteConfigScreen(),
       ),
     ],
   );

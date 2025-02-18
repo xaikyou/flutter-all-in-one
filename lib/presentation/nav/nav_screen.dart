@@ -28,9 +28,11 @@ class NavBody extends StatelessWidget {
       bottomNavigationBar: BlocBuilder<NavCubit, NavState>(
         builder: (context, state) {
           return NavigationBar(
+            height: kBottomNavigationBarHeight,
             onDestinationSelected: (value) =>
                 context.read<NavCubit>().update(value),
             selectedIndex: state.data.navIndex,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
             destinations: [
               NavigationDestination(
                 icon: Icon(MingCute.home_4_line),
@@ -68,20 +70,20 @@ class NavBody extends StatelessWidget {
                           color: AppColor.white,
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        decoration: ShapeDecoration(
-                          shape: StadiumBorder(),
-                          color: AppColor.yellow,
-                        ),
-                        child: Text(
-                          context.loc.scan_qr,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: AppColor.black,
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   padding: EdgeInsets.symmetric(horizontal: 8),
+                      //   decoration: ShapeDecoration(
+                      //     shape: StadiumBorder(),
+                      //     color: AppColor.yellow,
+                      //   ),
+                      //   child: Text(
+                      //     context.loc.scan_qr,
+                      //     style: TextStyle(
+                      //       fontSize: 12,
+                      //       color: AppColor.black,
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
