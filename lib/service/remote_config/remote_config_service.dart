@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:developer' as developer;
+import 'dart:developer' as dev;
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_all_in_one/service/injection/injection.dart';
@@ -69,7 +69,7 @@ class RemoteConfigService {
         _onRemoteConfigValueUpdate();
       }
     } catch (e) {
-      developer.log('Error fetching remote config: $e');
+      dev.log('Error fetching remote config: $e');
     }
   }
 

@@ -26,6 +26,7 @@ dependencies:
   # Firebase
   firebase_core: ^3.10.1
   firebase_remote_config: ^5.3.1
+  firebase_crashlytics: ^4.3.3
 
   # UI Helper
   icons_plus: ^5.0.0

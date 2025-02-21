@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/model/app_version_response.dart';
@@ -54,7 +56,7 @@ class AppConfigCubit extends Cubit<AppConfigState> {
     AppVersionResponse response = AppVersionResponse.fromRawJson(
         _remoteConfig.getValue(RemoteConfigKey.version));
     if (response.version != state.data.version) {
-      print("updated version available");
+      dev.log("updated version available");
     }
   }
 
