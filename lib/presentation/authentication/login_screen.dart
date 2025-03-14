@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/extension/context_extension.dart';
-import 'package:flutter_all_in_one/router/app_router.dart';
 import 'package:flutter_all_in_one/style/app_color.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,7 +11,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: FilledButton(
-          onPressed: () => context.go(AppRouter.nav),
+          onPressed: () => context.go('/home'),
           style: FilledButton.styleFrom(
             backgroundColor: AppColor.black,
             shape: RoundedRectangleBorder(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -14,40 +16,46 @@ import 'router/app_router.dart';
 import 'service/injection/injection.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
 
-  await configureDependencies();
+    await configureDependencies();
 
-  /// Firebase Crashlytics
-  FlutterError.onError = (errorDetails) {
-    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-  };
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
+    /// Firebase Crashlytics
+    FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
+    FlutterError.onError = (errorDetails) {
+      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+    };
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
 
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<AppConfigCubit>(
-          create: (BuildContext context) => AppConfigCubit()..init(),
-        ),
-        BlocProvider<ConnectivityBloc>(
-          create: (BuildContext context) => ConnectivityBloc()
-            ..add(WatchConnectivityEvent())
-            ..add(CheckConnectivityEvent()),
-        ),
-        BlocProvider<RemoteConfigBloc>(
-          create: (BuildContext context) =>
-              RemoteConfigBloc()..add(WatchUpdatedKeysEvent()),
-        ),
-      ],
-      child: const MainApp(),
-    ),
-  );
+    runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<AppConfigCubit>(
+            create: (BuildContext context) => AppConfigCubit()..init(),
+          ),
+          BlocProvider<ConnectivityBloc>(
+            create: (BuildContext context) => ConnectivityBloc()
+              ..add(WatchConnectivityEvent())
+              ..add(CheckConnectivityEvent()),
+          ),
+          BlocProvider<RemoteConfigBloc>(
+            create: (BuildContext context) =>
+                RemoteConfigBloc()..add(WatchUpdatedKeysEvent()),
+          ),
+        ],
+        child: const MainApp(),
+      ),
+    );
+  }, (error, stackTrace) {
+    FirebaseCrashlytics.instance.recordError(error, stackTrace);
+  });
 }
 
 class MainApp extends StatelessWidget {

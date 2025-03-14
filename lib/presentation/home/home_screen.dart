@@ -5,13 +5,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: FilledButton(
-          onPressed: () => throw Exception(),
-          child: const Text("Throw Test Exception"),
-        ),
-      ),
-    );
+    return Scaffold();
   }
 }

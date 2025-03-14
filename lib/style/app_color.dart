@@ -11,7 +11,7 @@ class AppColor {
   static const yellow = Color.fromARGB(255, 240, 193, 48);
   static const grey = Color.fromARGB(255, 200, 200, 200);
 
-  static const selectedNavIcon = yellow;
+  static const selectedNavIcon = Color.fromARGB(255, 240, 193, 48);
 
   static Color getBlackWhite(BuildContext context, {bool? reverse}) {
     return reverse == true
