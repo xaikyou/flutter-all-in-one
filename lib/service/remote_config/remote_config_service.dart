@@ -48,6 +48,8 @@ class RemoteConfigService {
       await _remoteConfig.activate();
       _updatedKeys = event.updatedKeys;
       _onRemoteConfigValueUpdate.call();
+    }, onError: (e) {
+      // Ignore RC errors
     });
 
     if (await _connectivityService.isConnected) {
