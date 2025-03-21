@@ -12,6 +12,7 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../app_prefs/app_prefs_service_helper.dart' as _i582;
 import '../app_settings/app_settings_service_impl.dart' as _i272;
 import '../connectivity/connectivity_service.dart' as _i528;
 import '../remote_config/remote_config_service.dart' as _i137;
@@ -34,6 +35,8 @@ extension GetItInjectableX on _i174.GetIt {
       () => injectionModule.remoteConfigService,
       preResolve: true,
     );
+    gh.lazySingleton<_i582.AppPrefsServiceHelper>(
+        () => _i582.AppPrefsServiceHelper());
     gh.lazySingleton<_i272.AppSettingsService>(
         () => _i272.AppSettingsServiceImpl());
     return this;
